@@ -11,11 +11,14 @@ def read_csv_file(file_name):
     with open(file_name, "r") as csv_file:
         reader = csv.reader(csv_file)
         # skip the header
-        next(reader)
+        # next(reader)
         for row in reader:
             data.append(row)
     return data
 
 
 output = read_csv_file("data_files/anna.csv")
-print(output)
+#print(output)
+# change the list of lists to a pandas dataframe
+df = pd.DataFrame(output)
+print(df)

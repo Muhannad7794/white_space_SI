@@ -309,4 +309,4 @@ db.sqlite3
 migration/*.py
 media/
 
-# End of https://www.toptal.com/developers/gitignore/api/python,node
+.parcel-cache/

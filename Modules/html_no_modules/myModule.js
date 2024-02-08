@@ -3,7 +3,3 @@ class ClassA {
         console.log('ClassA constructor');
     }
 }
-
-module.exports = {
-    ClassA
-}
