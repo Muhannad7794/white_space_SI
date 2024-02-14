@@ -10,7 +10,7 @@ with open(file_path, "r") as file:
 
 first_person = data[0]
 
-# print the first person detals as a string
+# print the first person details as a string
 print(first_person["name"])
 print(first_person["age"])
 # convert the hobbies list into a string:
