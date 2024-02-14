@@ -1,29 +1,9 @@
-[
-    {
-        "name": "Anna",
-        "age": 25,
-        "hobbies": [
-            "hicking",
-            "swimming",
-            "reading"
-        ]
-    },
-    {
-        "name": "John",
-        "age": 30,
-        "hobbies": [
-            "hicking",
-            "swimming",
-            "reading"
-        ]
-    },
-    {
-        "name": "Tom",
-        "age": 35,
-        "hobbies": [
-            "hicking",
-            "swimming",
-            "reading"
-        ]
-    }
-]
+{
+    "name": "Anna",
+    "age": 25,
+    "hobbies": [
+        "hicking",
+        "swimming",
+        "reading"
+    ]
+}
