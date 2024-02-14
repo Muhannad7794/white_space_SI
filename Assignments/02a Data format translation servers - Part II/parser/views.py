@@ -42,13 +42,27 @@ class CsvDataViewSet(BaseDataViewSet):
     def parse_data(self):
         file_path = DATA_FILES_DIR / "anna.csv"
         with open(file_path, "r") as file:
-            reader = csv.DictReader(file)
-            return next(reader)
+            # parse the CSV file as a string
+            csv_file = csv.reader(file)
+
+            # Skip the header row
+            next(csv_file, None)
+
+            # iterate through the CSV file
+            for row in csv_file:
+                name = row[0]
+                age = row[1]
+                hobbies = row[2]
+
+                # Print the parsed data
+                print(name)
+                print(age)
+                print(hobbies)
 
 
 class YamlDataViewSet(BaseDataViewSet):
     def parse_data(self):
-        file_path = DATA_FILES_DIR / "anna.yaml"
+        file_path = DATA_FILES_DIR / "anna.yml"
         with open(file_path, "r") as file:
             return yaml.safe_load(file)
 
@@ -58,19 +72,34 @@ class XmlDataViewSet(BaseDataViewSet):
         file_path = DATA_FILES_DIR / "anna.xml"
         tree = ET.parse(file_path)
         root = tree.getroot()
-        return {
-            "name": root.find("name").text,
-            "age": int(root.find("age").text),
-            "hobbies": [hobby.text for hobby in root.find("hobbies")],
-        }
+        # Extract and print the name and age
+        name = root.find("Name").text
+        age = root.find("Age").text
+
+        # Extract the hobbies
+        hobbies_elements = root.find("Hobbies").findall("Hobby")
+        hobbies = [hobby.text for hobby in hobbies_elements]
+
+        # Join the list of hobbies into a single string with commas
+        hobbies_str = ", ".join(hobbies)
+
+        print(name)
+        print(age)
+        print(hobbies_str)
 
 
 class TxtDataViewSet(BaseDataViewSet):
     def parse_data(self):
         file_path = DATA_FILES_DIR / "anna.txt"
+        parsed_data = {}
         with open(file_path, "r") as file:
-            return {
-                "name": file.readline().strip(),
-                "age": int(file.readline().strip()),
-                "hobbies": file.readline().strip().split(","),
-            }
+            for line in file:
+                # Split each line into key and value parts
+                key, value = line.strip().split(": ", 1)
+                # Trim any leading/trailing whitespace and store in dictionary
+                parsed_data[key.strip()] = value.strip()
+
+        # Extract and print the parsed data
+        print(parsed_data["name"])
+        print(parsed_data["age"])
+        print(parsed_data["hobbies"])
