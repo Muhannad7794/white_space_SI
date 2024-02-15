@@ -47,13 +47,13 @@ class YamlDataViewSet(BaseDataViewSet):
 
 class ReadCSVFromServerBViewSet(viewsets.ViewSet):
     def list(self, request):
-        response = requests.get("http://localhost:8080/parser/csv/")
+        response = requests.get("http://localhost:8080/fast_parser/csv/")
         response.raise_for_status()
         return Response(response.json(), status=status.HTTP_200_OK)
 
 
 class ReadXMLFromServerBViewSet(viewsets.ViewSet):
     def list(self, request):
-        response = requests.get("http://localhost:8080/parser/xml/")
+        response = requests.get("http://localhost:8080/fast_parser/xml/")
         response.raise_for_status()
         return Response(response.json(), status=status.HTTP_200_OK)

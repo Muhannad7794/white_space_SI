@@ -12,6 +12,14 @@ urlpatterns = [
     path("data/json/", JsonDataViewSet.as_view({"get": "list"}), name="json-data"),
     path("data/yaml/", YamlDataViewSet.as_view({"get": "list"}), name="yaml-data"),
     # path for reading data from server B
-    path("data/server-b/csv", ReadCSVFromServerBViewSet.as_view({"get": "list"}), name="server-b-csv"),
-    path("data/server-b/xml", ReadXMLFromServerBViewSet.as_view({"get": "list"}), name="server-b-xml"),
+    path(
+        "data/server-b/csv",
+        ReadCSVFromServerBViewSet.as_view({"get": "list"}),
+        name="server-b-csv",
+    ),
+    path(
+        "data/server-b/xml",
+        ReadXMLFromServerBViewSet.as_view({"get": "list"}),
+        name="server-b-xml",
+    ),
 ]
