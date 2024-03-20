@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+    <h1>Welcome to the home page</h1>
+    <p>first view</p>
+  </body>
+  <body>
+    <h1>date Time</h1>
+    <div id="date"></div>
+    <script>
+      const dateDiv = document.getElementById("date");
+
+      const eventSource = new EventSource("/sse");
+
+
+      eventSource.onmessage = (event) => {
+        console.log(event.data);
+        dateDiv.textContent = event.data;
+      };
+    </script>
+  </body>
+</html>
