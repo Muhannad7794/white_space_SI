@@ -25,8 +25,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     def send_verification_email(self, user):
         token = default_token_generator.make_token(user)
-        uid = urlsafe_base64_encode(force_bytes(user.pk)).decode()
-        verify_url = reverse("verify_email", args=[uid, token])
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+        verify_url = reverse("verify_email", args=[uidb64, token])
         full_verify_url = f"{settings.SITE_DOMAIN}{verify_url}"
         send_mail(
             "Verify your account",
