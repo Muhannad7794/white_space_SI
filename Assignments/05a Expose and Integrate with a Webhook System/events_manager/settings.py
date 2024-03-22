@@ -108,6 +108,9 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 # User model
 AUTH_USER_MODEL = "users.User"
 
+# Site domain:
+SITE_DOMAIN = "http://localhost:8000"
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
