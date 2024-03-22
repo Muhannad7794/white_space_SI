@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .serializers import UserSerializer
+from .models import Subscription
+from .serializers import UserSerializer, SubscriptionSerializer
 from django.http import HttpResponse
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
@@ -34,3 +35,14 @@ class VerifyEmailView(APIView):
             return HttpResponse(
                 "Email verification failed.", status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class SubscriptionViewSet(viewsets.ModelViewSet):
+    queryset = Subscription.objects.all()
+    serializer_class = SubscriptionSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_authenticated:
+            return Subscription.objects.filter(user=user)
+        return Subscription.objects.none()

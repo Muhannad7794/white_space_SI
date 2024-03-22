@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from rest_framework import serializers
+from .models import Subscription
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
@@ -35,3 +36,9 @@ class UserSerializer(serializers.ModelSerializer):
             [user.email],
             fail_silently=False,
         )
+
+
+class SubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subscription
+        fields = "__all__"

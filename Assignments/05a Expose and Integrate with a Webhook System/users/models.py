@@ -4,6 +4,8 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.db import models
+from django.conf import settings
+from events.models import Topic
 from django.utils import timezone
 
 
@@ -45,3 +47,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="subscriptions"
+    )
+    topic = models.ForeignKey(
+        Topic, on_delete=models.CASCADE, related_name="subscribed_users"
+    )
+
+    class Meta:
+        unique_together = (
+            "user",
+            "topic",
+        )  # Ensure users can't subscribe to the same topic more than once.
+
+    def __str__(self):
+        return f"{self.user} is subscribed to {self.topic}"
