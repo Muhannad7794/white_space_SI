@@ -5,8 +5,12 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # users pahs:
     path("users/", include("users.urls")),
     path("users/token/", obtain_auth_token, name="token_auth"),
+    # events paths:
+    path("events/", include("events.urls")),
+    # swagger paths:
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "api/docs/",
