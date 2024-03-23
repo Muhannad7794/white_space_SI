@@ -1,12 +1,12 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import EventViewSet, TopicViewSet, ping_webhooks
+from .views import EventViewSet, TopicViewSet, PingWebhooksView
 
 router = DefaultRouter()
-router.register(r"events", EventViewSet)
-router.register(r"topics", TopicViewSet)
+router.register(r"events", EventViewSet, basename="event")
+router.register(r"topics", TopicViewSet, basename="topic")
 
 urlpatterns = [
     path("", include(router.urls)),
-    path("ping/", ping_webhooks),
+    path("ping/", PingWebhooksView.as_view(), name="ping_webhooks"),
 ]
