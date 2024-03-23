@@ -146,7 +146,38 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Event Manager API",
-    "DESCRIPTION": "API for managing events and users and the notification system between them.",
+    "DESCRIPTION": """
+    This API facilitates event management and user notifications. It enables users to subscribe to topics and receive updates on events within those topics, acting as a webhook system between event creators (exposee) and subscribers (integrators).
+    
+    ## Key Features
+    - **User Registration and Authentication**: Securely register and authenticate users, allowing them to manage their subscriptions and receive notifications.
+    - **Topic and Event Management**: Create, update, and delete topics and events. Users can subscribe to topics to receive updates on related events.
+    - **Subscription System**: Users can subscribe to specific topics. When events related to these topics are created or updated, the system notifies subscribed users.
+    - **Webhook Testing**: The `/ping` endpoint simulates the webhook notification system, verifying that subscribers receive notifications as expected.
+    """,
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
+    "TAGS": [
+        {
+            "name": "User",
+            "description": "Operations related to user management including registration, authentication, and email verification.",
+        },
+        {
+            "name": "Subscriptions",
+            "description": "Manage user subscriptions to topics for receiving updates on events.",
+        },
+        {
+            "name": "Topics",
+            "description": "Operations for topic management. Topics categorize events.",
+        },
+        {
+            "name": "Events",
+            "description": "CRUD operations for events within topics. Notifies subscribed users upon updates.",
+        },
+        {
+            "name": "Webhooks",
+            "description": "Test endpoint to simulate and verify the webhook notification system.",
+        },
+    ],
+    "COMPONENT_SPLIT_REQUEST": True,  # Splits serializers for request and response if they differ
 }
