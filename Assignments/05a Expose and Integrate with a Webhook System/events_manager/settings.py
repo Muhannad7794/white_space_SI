@@ -159,19 +159,19 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "TAGS": [
         {
-            "name": "User",
+            "name": "users",
             "description": "Operations related to user management including registration, authentication, and email verification.",
         },
         {
-            "name": "Subscriptions",
+            "name": "subscriptions",
             "description": "Manage user subscriptions to topics for receiving updates on events.",
         },
         {
-            "name": "Topics",
+            "name": "topics",
             "description": "Operations for topic management. Topics categorize events.",
         },
         {
-            "name": "Events",
+            "name": "events",
             "description": "CRUD operations for events within topics. Notifies subscribed users upon updates.",
         },
         {
@@ -179,5 +179,5 @@ SPECTACULAR_SETTINGS = {
             "description": "Test endpoint to simulate and verify the webhook notification system.",
         },
     ],
-    "COMPONENT_SPLIT_REQUEST": True,  # Splits serializers for request and response if they differ
+    "COMPONENT_SPLIT_REQUEST": True,
 }

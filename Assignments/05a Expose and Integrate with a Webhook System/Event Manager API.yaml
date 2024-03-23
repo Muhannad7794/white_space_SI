@@ -893,14 +893,14 @@ components:
       in: cookie
       name: sessionid
 tags:
-- name: User
+- name: users
   description: Operations related to user management including registration, authentication,
     and email verification.
-- name: Subscriptions
+- name: subscriptions
   description: Manage user subscriptions to topics for receiving updates on events.
-- name: Topics
+- name: topics
   description: Operations for topic management. Topics categorize events.
-- name: Events
+- name: events
   description: CRUD operations for events within topics. Notifies subscribed users
     upon updates.
 - name: Webhooks
