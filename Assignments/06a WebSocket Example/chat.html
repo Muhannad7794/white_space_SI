@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat Example</title>
+    <script>
+      var ws = new WebSocket("ws://127.0.0.1:8000/ws/chat/");
+
+      ws.onmessage = function (e) {
+        var message = JSON.parse(e.data);
+        document.getElementById("messages").innerText += message.message + "\n";
+      };
+
+      function sendMessage() {
+        var message = document.getElementById("messageInput").value;
+        ws.send(JSON.stringify({ message: message }));
+      }
+    </script>
+  </head>
+  <body>
+    <textarea id="messages" cols="30" rows="10"></textarea><br />
+    <input type="text" id="messageInput" />
+    <button onclick="sendMessage()">Send Message</button>
+  </body>
+</html>
