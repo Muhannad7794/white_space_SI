@@ -32,7 +32,7 @@ INSTALLED_APPS = [
 ]
 
 # ASGI setup
-ASGI_APPLICATION = "web_cahnnels.asgi.application"
+ASGI_APPLICATION = "web_channels.asgi.application"
 
 # Configuration for Channel Layers (using Redis)
 CHANNEL_LAYERS = {
@@ -41,7 +41,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [
                 ("127.0.0.1", 6379)
-            ],  # Assuming Redis is running locally on port 6379
+            ],
         },
     },
 }
