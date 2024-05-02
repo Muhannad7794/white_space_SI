@@ -1,0 +1,6 @@
+Since the assignment is about the documentation process, I am using the pro-
+-ject from assignment 04b as it also addresses some documentation aspects.
+I am expanding on the code there and providing more documentation func-
+-tinality to cover both assignemnts. 
+Please refer back to the code and dontent in 04b to find the work related
+to this assignment.
