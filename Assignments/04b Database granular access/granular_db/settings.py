@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # third party
     "drf_spectacular",
     "rest_framework",
+    "django_extensions",
     # local
     "school",
 ]
