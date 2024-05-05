@@ -1,0 +1,19 @@
+As this assignment's concern is database migration, I am also using the code
+and the project from assignment 04b.
+This is because the requirements of applying migration between two databases
+and creating a migration script is already included in there.
+The project is built with Django, which has its own migration protocol included.
+The migration happens through modeling the database structure in models.py then
+applying this structure on the database using Django's migration commands:
+"python manage.py makemigrations"  &  "python manage.py migrate"
+Django uses Sqlite, a file based database as its default database.
+The database inherits the structure modeled in models.py,and the migration 
+script included here in this folder.
+However, the project is using a MySQL database hosted on Azure, which adds a 
+further layer of migration to the project, as another migration process is 
+applied here to migrate from SqLite to a closed hosted RDBMS database.
+The migration script registers and creates new authentication and administration
+tables in addition to the custom made tables structured by the Django models.
+This does not only document the migration process, but also documents any 
+admin/user operations, in case the project implements any multi access level
+principles to manage and access the database.
