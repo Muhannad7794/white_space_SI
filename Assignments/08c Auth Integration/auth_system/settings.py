@@ -71,7 +71,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 
-LOGIN_REDIRECT_URL = "/"  # Adjust to where you want users redirected after login
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -80,7 +80,14 @@ SOCIALACCOUNT_PROVIDERS = {
             "client_id": os.getenv("CLIENT_ID"),
             "secret": os.getenv("CLIENT_SECRET"),
             "key": "",
-        }
+        },
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
     }
 }
 
