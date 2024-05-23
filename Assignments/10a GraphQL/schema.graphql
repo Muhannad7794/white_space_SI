@@ -46,7 +46,7 @@ type Mutation {
   deleteBook(id: ID!): SuccessMessage
 }
 
-# Subscription is optional as per your note
+# Subscription  
 type Subscription {
   "Updates when a new book has been added"
   bookAdded: Book
