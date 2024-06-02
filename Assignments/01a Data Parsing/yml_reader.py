@@ -1,4 +1,4 @@
-import yaml
+import yaml # type: ignore
 
 # Path to the YAML file
 file_path = "data_files/anna.yml"
