@@ -9,7 +9,7 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     # Schema and Documentation paths for drf-spectacular
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    # Optional: Use SpectacularSwaggerView for Swagger UI
+    
     path(
         "api/docs/",
         SpectacularSwaggerView.as_view(url_name="schema"),
