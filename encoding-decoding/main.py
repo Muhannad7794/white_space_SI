@@ -1,6 +1,6 @@
-encoded_string= "heyaa".encode()
+encoded_string = "heyaa".encode("utf-8")
 
-print(encoded_string)
+print("Encoded text:", encoded_string)
 
 decoded_string = encoded_string.decode()
-print(decoded_string)
+print("Decoded text:", decoded_string)
