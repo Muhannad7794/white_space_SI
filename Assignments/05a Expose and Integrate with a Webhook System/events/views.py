@@ -55,7 +55,7 @@ class EventViewSet(viewsets.ModelViewSet):
     responses={200: "Ping notifications sent to all subscribed users."},
 )
 class PingWebhooksView(APIView):
-    permission_classes = [IsAuthenticated]  # Adjust permissions as needed
+    permission_classes = [IsAuthenticated]  
 
     def get(self, request, *args, **kwargs):
         subscriptions = Subscription.objects.all()

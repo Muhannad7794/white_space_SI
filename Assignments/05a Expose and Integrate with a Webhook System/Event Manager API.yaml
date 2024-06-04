@@ -2,7 +2,8 @@ openapi: 3.0.3
 info:
   title: Event Manager API
   version: 1.0.0
-  description: "\n    This API facilitates event management and user notifications.\
+  description:
+    "\n    This API facilitates event management and user notifications.\
     \ It enables users to subscribe to topics and receive updates on events within\
     \ those topics, acting as a webhook system between event creators (exposee) and\
     \ subscribers (integrators).\n    \n    ## Key Features\n    - **User Registration\
@@ -19,660 +20,661 @@ paths:
     get:
       operationId: events_events_list
       tags:
-      - events
+        - events
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Event'
-          description: ''
+                  $ref: "#/components/schemas/Event"
+          description: ""
     post:
       operationId: events_events_create
       tags:
-      - events
+        - events
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EventRequest'
+              $ref: "#/components/schemas/EventRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/EventRequest'
+              $ref: "#/components/schemas/EventRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/EventRequest'
+              $ref: "#/components/schemas/EventRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '201':
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
-          description: ''
+                $ref: "#/components/schemas/Event"
+          description: ""
   /events/events/{id}/:
     get:
       operationId: events_events_retrieve
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this event.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this event.
+          required: true
       tags:
-      - events
+        - events
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
-          description: ''
+                $ref: "#/components/schemas/Event"
+          description: ""
     put:
       operationId: events_events_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this event.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this event.
+          required: true
       tags:
-      - events
+        - events
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EventRequest'
+              $ref: "#/components/schemas/EventRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/EventRequest'
+              $ref: "#/components/schemas/EventRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/EventRequest'
+              $ref: "#/components/schemas/EventRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
-          description: ''
+                $ref: "#/components/schemas/Event"
+          description: ""
     patch:
       operationId: events_events_partial_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this event.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this event.
+          required: true
       tags:
-      - events
+        - events
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedEventRequest'
+              $ref: "#/components/schemas/PatchedEventRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedEventRequest'
+              $ref: "#/components/schemas/PatchedEventRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedEventRequest'
+              $ref: "#/components/schemas/PatchedEventRequest"
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Event'
-          description: ''
+                $ref: "#/components/schemas/Event"
+          description: ""
     delete:
       operationId: events_events_destroy
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this event.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this event.
+          required: true
       tags:
-      - events
+        - events
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '204':
+        "204":
           description: No response body
   /events/ping/:
     get:
       operationId: events_ping_retrieve
       description: Sends a test notification to all subscribed users via email.
-      summary: triggers the ping endpoint to send notifications to all subscribed
+      summary:
+        triggers the ping endpoint to send notifications to all subscribed
         users.            Used as a test endpoint to verify the webhook system is
         working.
       tags:
-      - Webhooks
+        - Webhooks
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
                 type: object
                 additionalProperties: {}
                 description: Unspecified response body
-          description: ''
+          description: ""
   /events/topics/:
     get:
       operationId: events_topics_list
       tags:
-      - events
+        - events
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Topic'
-          description: ''
+                  $ref: "#/components/schemas/Topic"
+          description: ""
     post:
       operationId: events_topics_create
       tags:
-      - events
+        - events
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TopicRequest'
+              $ref: "#/components/schemas/TopicRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/TopicRequest'
+              $ref: "#/components/schemas/TopicRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/TopicRequest'
+              $ref: "#/components/schemas/TopicRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '201':
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Topic'
-          description: ''
+                $ref: "#/components/schemas/Topic"
+          description: ""
   /events/topics/{id}/:
     get:
       operationId: events_topics_retrieve
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this topic.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this topic.
+          required: true
       tags:
-      - events
+        - events
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Topic'
-          description: ''
+                $ref: "#/components/schemas/Topic"
+          description: ""
     put:
       operationId: events_topics_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this topic.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this topic.
+          required: true
       tags:
-      - events
+        - events
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TopicRequest'
+              $ref: "#/components/schemas/TopicRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/TopicRequest'
+              $ref: "#/components/schemas/TopicRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/TopicRequest'
+              $ref: "#/components/schemas/TopicRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Topic'
-          description: ''
+                $ref: "#/components/schemas/Topic"
+          description: ""
     patch:
       operationId: events_topics_partial_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this topic.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this topic.
+          required: true
       tags:
-      - events
+        - events
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedTopicRequest'
+              $ref: "#/components/schemas/PatchedTopicRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedTopicRequest'
+              $ref: "#/components/schemas/PatchedTopicRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedTopicRequest'
+              $ref: "#/components/schemas/PatchedTopicRequest"
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Topic'
-          description: ''
+                $ref: "#/components/schemas/Topic"
+          description: ""
     delete:
       operationId: events_topics_destroy
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this topic.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this topic.
+          required: true
       tags:
-      - events
+        - events
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '204':
+        "204":
           description: No response body
   /users/subscriptions/:
     get:
       operationId: users_subscriptions_list
       tags:
-      - users
+        - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Subscription'
-          description: ''
+                  $ref: "#/components/schemas/Subscription"
+          description: ""
     post:
       operationId: users_subscriptions_create
       tags:
-      - users
+        - users
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: "#/components/schemas/SubscriptionRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: "#/components/schemas/SubscriptionRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: "#/components/schemas/SubscriptionRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '201':
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subscription'
-          description: ''
+                $ref: "#/components/schemas/Subscription"
+          description: ""
   /users/subscriptions/{id}/:
     get:
       operationId: users_subscriptions_retrieve
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this subscription.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this subscription.
+          required: true
       tags:
-      - users
+        - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subscription'
-          description: ''
+                $ref: "#/components/schemas/Subscription"
+          description: ""
     put:
       operationId: users_subscriptions_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this subscription.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this subscription.
+          required: true
       tags:
-      - users
+        - users
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: "#/components/schemas/SubscriptionRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: "#/components/schemas/SubscriptionRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/SubscriptionRequest'
+              $ref: "#/components/schemas/SubscriptionRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subscription'
-          description: ''
+                $ref: "#/components/schemas/Subscription"
+          description: ""
     patch:
       operationId: users_subscriptions_partial_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this subscription.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this subscription.
+          required: true
       tags:
-      - users
+        - users
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedSubscriptionRequest'
+              $ref: "#/components/schemas/PatchedSubscriptionRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedSubscriptionRequest'
+              $ref: "#/components/schemas/PatchedSubscriptionRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedSubscriptionRequest'
+              $ref: "#/components/schemas/PatchedSubscriptionRequest"
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Subscription'
-          description: ''
+                $ref: "#/components/schemas/Subscription"
+          description: ""
     delete:
       operationId: users_subscriptions_destroy
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this subscription.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this subscription.
+          required: true
       tags:
-      - users
+        - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '204':
+        "204":
           description: No response body
   /users/token/:
     post:
       operationId: users_token_create
       tags:
-      - users
+        - users
       requestBody:
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/AuthTokenRequest'
+              $ref: "#/components/schemas/AuthTokenRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/AuthTokenRequest'
+              $ref: "#/components/schemas/AuthTokenRequest"
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthTokenRequest'
+              $ref: "#/components/schemas/AuthTokenRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthToken'
-          description: ''
+                $ref: "#/components/schemas/AuthToken"
+          description: ""
   /users/users/:
     get:
       operationId: users_users_list
       tags:
-      - users
+        - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/User'
-          description: ''
+                  $ref: "#/components/schemas/User"
+          description: ""
     post:
       operationId: users_users_create
       tags:
-      - users
+        - users
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserRequest'
+              $ref: "#/components/schemas/UserRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/UserRequest'
+              $ref: "#/components/schemas/UserRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/UserRequest'
+              $ref: "#/components/schemas/UserRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '201':
+        "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-          description: ''
+                $ref: "#/components/schemas/User"
+          description: ""
   /users/users/{id}/:
     get:
       operationId: users_users_retrieve
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this user.
+          required: true
       tags:
-      - users
+        - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-          description: ''
+                $ref: "#/components/schemas/User"
+          description: ""
     put:
       operationId: users_users_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this user.
+          required: true
       tags:
-      - users
+        - users
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserRequest'
+              $ref: "#/components/schemas/UserRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/UserRequest'
+              $ref: "#/components/schemas/UserRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/UserRequest'
+              $ref: "#/components/schemas/UserRequest"
         required: true
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-          description: ''
+                $ref: "#/components/schemas/User"
+          description: ""
     patch:
       operationId: users_users_partial_update
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this user.
+          required: true
       tags:
-      - users
+        - users
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchedUserRequest'
+              $ref: "#/components/schemas/PatchedUserRequest"
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/PatchedUserRequest'
+              $ref: "#/components/schemas/PatchedUserRequest"
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PatchedUserRequest'
+              $ref: "#/components/schemas/PatchedUserRequest"
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-          description: ''
+                $ref: "#/components/schemas/User"
+          description: ""
     delete:
       operationId: users_users_destroy
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        description: A unique integer value identifying this user.
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          description: A unique integer value identifying this user.
+          required: true
       tags:
-      - users
+        - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
+        - cookieAuth: []
+        - basicAuth: []
       responses:
-        '204':
+        "204":
           description: No response body
   /users/verify-email/{uidb64}/{token}/:
     get:
       operationId: users_verify_email_retrieve
       parameters:
-      - in: path
-        name: token
-        schema:
-          type: string
-        required: true
-      - in: path
-        name: uidb64
-        schema:
-          type: string
-        required: true
+        - in: path
+          name: token
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: uidb64
+          schema:
+            type: string
+          required: true
       tags:
-      - users
+        - users
       security:
-      - cookieAuth: []
-      - basicAuth: []
-      - {}
+        - cookieAuth: []
+        - basicAuth: []
+        - {}
       responses:
-        '200':
+        "200":
           description: No response body
 components:
   schemas:
@@ -683,7 +685,7 @@ components:
           type: string
           readOnly: true
       required:
-      - token
+        - token
     AuthTokenRequest:
       type: object
       properties:
@@ -696,8 +698,8 @@ components:
           writeOnly: true
           minLength: 1
       required:
-      - password
-      - username
+        - password
+        - username
     Event:
       type: object
       properties:
@@ -720,12 +722,12 @@ components:
           type: string
           description: Duration in hours and minutes
       required:
-      - date
-      - duration
-      - id
-      - name
-      - topic_name
-      - venue
+        - date
+        - duration
+        - id
+        - name
+        - topic_name
+        - venue
     EventRequest:
       type: object
       properties:
@@ -747,11 +749,11 @@ components:
           type: string
           description: Duration in hours and minutes
       required:
-      - date
-      - duration
-      - name
-      - topic
-      - venue
+        - date
+        - duration
+        - name
+        - topic
+        - venue
     PatchedEventRequest:
       type: object
       properties:
@@ -813,9 +815,9 @@ components:
         topic:
           type: integer
       required:
-      - id
-      - topic
-      - user
+        - id
+        - topic
+        - user
     SubscriptionRequest:
       type: object
       properties:
@@ -824,8 +826,8 @@ components:
         topic:
           type: integer
       required:
-      - topic
-      - user
+        - topic
+        - user
     Topic:
       type: object
       properties:
@@ -836,8 +838,8 @@ components:
           type: string
           maxLength: 100
       required:
-      - id
-      - name
+        - id
+        - name
     TopicRequest:
       type: object
       properties:
@@ -846,7 +848,7 @@ components:
           minLength: 1
           maxLength: 100
       required:
-      - name
+        - name
     User:
       type: object
       properties:
@@ -861,9 +863,9 @@ components:
           format: email
           maxLength: 254
       required:
-      - email
-      - id
-      - username
+        - email
+        - id
+        - username
     UserRequest:
       type: object
       properties:
@@ -881,9 +883,9 @@ components:
           writeOnly: true
           minLength: 1
       required:
-      - email
-      - password
-      - username
+        - email
+        - password
+        - username
   securitySchemes:
     basicAuth:
       type: http
@@ -893,15 +895,17 @@ components:
       in: cookie
       name: sessionid
 tags:
-- name: users
-  description: Operations related to user management including registration, authentication,
-    and email verification.
-- name: subscriptions
-  description: Manage user subscriptions to topics for receiving updates on events.
-- name: topics
-  description: Operations for topic management. Topics categorize events.
-- name: events
-  description: CRUD operations for events within topics. Notifies subscribed users
-    upon updates.
-- name: Webhooks
-  description: Test endpoint to simulate and verify the webhook notification system.
+  - name: users
+    description:
+      Operations related to user management including registration, authentication,
+      and email verification.
+  - name: subscriptions
+    description: Manage user subscriptions to topics for receiving updates on events.
+  - name: topics
+    description: Operations for topic management. Topics categorize events.
+  - name: events
+    description:
+      CRUD operations for events within topics. Notifies subscribed users
+      upon updates.
+  - name: Webhooks
+    description: Test endpoint to simulate and verify the webhook notification system.
