@@ -69,6 +69,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "payment_manager.wsgi.application"
 
+# Stripe settings
+STRIPE_API_KEY = "your_stripe_test_secret_key"
+
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
